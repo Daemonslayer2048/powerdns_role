@@ -1,0 +1,26 @@
+- name: Disable systemd-resolved
+  ansible.builtin.service:
+    name: systemd-resolved
+    state: stopped
+    enabled: false
+
+- name: Install PowerDNS Requirements
+  ansible.builtin.dnf:
+    state: present
+    name:
+      - pdns
+      - pdns-backend-mysql
+      - bind-utils
+
+- name: Configure PowerDNS
+  ansible.builtin.template:
+    src: ./templates/pdns.conf.j2
+    dest: /etc/pdns/pdns.conf
+  notify:
+    - Restart PowerDNS
+
+- name: Enable PowerDNS Service
+  ansible.builtin.service:
+    name: pdns
+    state: started
+    enabled: true

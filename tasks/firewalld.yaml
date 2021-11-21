@@ -1,0 +1,27 @@
+- name: Allow Caddy Through Firewalld
+  ansible.posix.firewalld:
+    rich_rule: rule family="ipv4" source address="{{ groups['Caddy'][0] }}" port port="{{ api_port }}" protocol="tcp" accept
+    zone: public
+    permanent: true
+    immediate: true
+    state: enabled
+  register: firewalld
+  when: groups["Caddy"] is defined and ( groups["Caddy"] | length>0 )
+
+- name: Allow DNS Through Firewalld
+  ansible.posix.firewalld:
+    rich_rule: rule family="ipv4" port port="53" protocol="{{ item }}" accept
+    zone: public
+    permanent: true
+    immediate: true
+    state: enabled
+  register: firewalld
+  with_items:
+    - "tcp"
+    - "udp"
+
+- name: Reload Firewalld
+  systemd:
+    name: firewalld
+    state: reloaded
+  when: firewalld.changed

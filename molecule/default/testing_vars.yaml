@@ -1,0 +1,13 @@
+# Base Section
+testing: True
+
+# MySQL Section
+mysql_encoding: utf8mb4
+mysql_root_password: Password1!
+mysql_application_database: pdns
+mysql_application_user: pdns
+mysql_application_password: Password1!
+mysql_application_script: "pdns.sql"
+
+# Application Section
+primary: True

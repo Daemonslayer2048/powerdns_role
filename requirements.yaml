@@ -1,0 +1,5 @@
+roles:
+  - name: common
+    src: https://github.com/Daemonslayer2048/ansible-common-role.git
+collections:
+  - community.mysql

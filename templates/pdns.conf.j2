@@ -1,0 +1,28 @@
+# MySQL Section
+launch=gmysql
+gmysql-host=127.0.0.1
+gmysql-user={{ mysql_application_user }}
+gmysql-password={{ mysql_application_password }}
+gmysql-dbname={{ mysql_application_database }}
+
+{% if enable_webserver is true %}
+# Web Server Section
+webserver=yes
+{% if api_port is defined %}webserver-port={{ api_port }}{% endif %}
+{% if enable_api is true %}
+# API Server Section
+api=yes
+{% if api_port is defined %}api-key={{ api_key }}{% endif %}
+{% endif %}
+{% endif %}
+
+# Mode of Operation Section
+{% if primary is defined and primary is true %}
+primary=yes
+{% elif primary is defined and primary is false %}
+primary=no
+{% elif secondary is defined and secondary is true %}
+secondary=yes
+{% elif secondary is defined and secondary is false %}
+secondary=no
+{% endif %}

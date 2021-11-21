@@ -1,0 +1,17 @@
+# Base Section
+testing: True
+
+# PHP Section
+php_mem_limit: 2
+
+# MySQL Section
+mysql_encoding: utf8mb4
+mysql_application_database: pdns
+mysql_application_user: pdns_admin
+pdns_sql_script: "pdns.sql"
+
+# Application Section
+enable_webserver: true
+enable_api: true
+api_port: 8081
+api_key: changeme

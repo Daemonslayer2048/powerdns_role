@@ -1,0 +1,19 @@
+- name: Restart php-fpm
+  ansible.builtin.systemd:
+    name: php-fpm
+    state: restarted
+
+- name: Restart MariaDB
+  ansible.builtin.systemd:
+    name: mariadb
+    state: restarted
+
+- name: Restart httpd
+  ansible.builtin.systemd:
+    name: httpd
+    state: restarted
+
+- name: Restart PowerDNS
+  ansible.builtin.systemd:
+    name: pdns
+    state: restarted

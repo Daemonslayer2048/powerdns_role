@@ -1,0 +1,14 @@
+- name: Include PHP
+  include: php.yaml
+
+- name: Include HTTPd
+  include: httpd.yaml
+
+- name: Include Mariadb
+  include: mariadb.yaml
+
+- name: Include Firewalld
+  include: firewalld.yaml
+
+- name: Include PowerDNS
+  include: pdns.yaml
